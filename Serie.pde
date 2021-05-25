@@ -26,7 +26,7 @@ class Serie {
     if (amp >= 50) {
       haySonido = true;
     }
-    if (haySonido) {
+    else if (haySonido) {
       for (int i = 0; i < cant; i++) {
         for (int j = 0; j < cant; j++) {
 
