@@ -29,6 +29,7 @@ class Serie {
         float p = map(amp, umbralAmp, 90, 0,1);
         float p1 = map(pitch, umbralAmp, 90, 0, 1);
         ampAmortiguado = map(amp, umbralAmp, 90, 0.1, 0.99);
+        //el map de la interpolacion, donde se hace i*j, se puede cambiar por otra operacion ej: i+j,i-j,(i%4), etc. y cambia un poco la forma 
         a_b = lerpColor(paleta[0], paleta[1], map(i*j, 0, cant, 0, p) * ampAmortiguado);
         b_a = lerpColor(paleta[1], paleta[0], map(j*i, 0, cant, 0, p1));
 
