@@ -1,4 +1,3 @@
-color a, b, c, d, a_b, b_a;
 import oscP5.*;
 OscP5 osc;
 GestorSenial gestorAmp;
@@ -16,9 +15,6 @@ void setup() {
   size(1000, 1000);
   noStroke();
   colorMode(HSB, 100);
-  a = color( #012340 );
-  c = color( #050000 );
-  b = color(#CAC1BA);
   osc = new OscP5(this, 12345);
   s = new Serie();
   gestorAmp = new GestorSenial(umbralAmp, 100, amorti);
