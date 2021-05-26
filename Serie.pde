@@ -26,7 +26,7 @@ class Serie {
     if (amp >= 50) {
       haySonido = true;
     }
-    else if (haySonido) {
+    if (haySonido) {
       for (int i = 0; i < cant; i++) {
         for (int j = 0; j < cant; j++) {
 
@@ -45,7 +45,7 @@ class Serie {
           a_b = lerpColor(a,b, map(i+j, 0, cant, 0, p)*ampAmortiguado);
           c_d = lerpColor(c,d, map(j+i, 0, cant, p,0));
           }
-          if(p1 > 0.7 && p1 <1.5) {
+          else if(p1 > 0.7 && p1 <1.5) {
           a_b = lerpColor(a,b, map(i*j, 0, cant, 0, p1)*ampAmortiguado);
           c_d = lerpColor(c,d, map(j*i, 0, cant, p1,0));
           }
