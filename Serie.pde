@@ -2,6 +2,7 @@ class Serie {
   float x, y, t, ang, dist;
   int cant;
   float ampAmortiguado;
+  float pitchAmortiguado;
   color[] paleta;
   color[] paleta_;
   boolean haySonido;
@@ -14,8 +15,8 @@ class Serie {
     y = dist *sin(ang);
     t = width/cant;
     haySonido = false;
-    paleta = new color[] {color(#F8FCDA), color(#E3E9C2), color(#F9FBB2), color(#7C6354),color(#A5ABAF)};
-    paleta_ = new color[] {color(#320A28), color(#511730), color(#8E443D), color(#CB9173),color(#E0D68A)};
+    paleta =  new color[] {color(#BDB351), color(#BBBBB3), color(#BFBE7D), color(#C9C1BC), color(#90A159)};
+    paleta_ = new color[] {color(#52505D), color(#29524A), color(#545931), color(#2F524C), color(#283C54)};
     a = color( paleta[ int( random(5) ) ] );
     b = color( paleta_[ int( random(5) ) ] );
     c = color( paleta_[ int( random(5) ) ] );
@@ -27,6 +28,7 @@ class Serie {
       haySonido = true;
     }
     if (haySonido) {
+
       for (int i = 0; i < cant; i++) {
         for (int j = 0; j < cant; j++) {
 
@@ -40,17 +42,17 @@ class Serie {
 
           float p = map(amp, umbralAmp, 90, 0, 2.5);
           float p1 = map(pitch, umbralAmp, 90, 0, 1);
-          ampAmortiguado = map(amp, umbralAmp, 90, 0.1,0.9);
-          if(p1 > 0 && p1 <0.7) {
-          a_b = lerpColor(a,b, map(i+j, 0, cant, 0, p)*ampAmortiguado);
-          c_d = lerpColor(c,d, map(j+i, 0, cant, p,0));
-          }
-          else if(p1 > 0.7 && p1 <1.5) {
-          a_b = lerpColor(a,b, map(i*j, 0, cant, 0, p1)*ampAmortiguado);
-          c_d = lerpColor(c,d, map(j*i, 0, cant, p1,0));
+          ampAmortiguado = map(amp, umbralAmp, 90, 0.1, 0.9);
+          pitchAmortiguado = map(pitch, umbralAmp, 90, 0.2, 0.99);
+          if (p1 > 0 && p1 <0.7) {
+            a_b = lerpColor(a, b, map((i+j)%7, 0, cant, 0, p)*ampAmortiguado);
+            c_d = lerpColor(c, d, map((j+i)%4, 0, cant, p, 0)*pitchAmortiguado);
+          } else if (p1 > 0.7 && p1 <1.5) {
+            a_b = lerpColor(a, b, map((i*j)%10, 0, cant, 0, p1)*ampAmortiguado);
+            c_d = lerpColor(c, d, map((j*i)%5, 0, cant, p1, 0)*pitchAmortiguado);
           }
           // println("AMP P: " + p);
-           println("PITCH P1: " +p1);
+          println("PITCH P1: " +p1);
 
           // cuadrante inferior der
           fill(a_b);
